@@ -46,7 +46,8 @@ GENERIC_SITE_TITLE_SNIPPET = "barnstormers.com find aircraft"
 # L-4, the J-3's military version. The number must not run into another
 # digit, so "J-30"/"L-40" don't match.
 _J3_RE = re.compile(r"\bj\s?-?\s?3(?!\d)", re.IGNORECASE)
-_L4_RE = re.compile(r"\bl\s?-?\s?4(?!\d)|grasshopper", re.IGNORECASE)
+# "L-4" may run straight on from "J3" ("J3L4"), so it can follow a digit too.
+_L4_RE = re.compile(r"(?:\b|(?<=\d))l\s?-?\s?4(?!\d)|grasshopper", re.IGNORECASE)
 # Other Cub-family models. A title naming one of these is some other
 # airplane or a mixed parts ad ("J-3/PA-11 parts"), and is dropped.
 _OTHER_MODEL_RE = re.compile(
